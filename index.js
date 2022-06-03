@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const api = require("./api");
+const utils = require("./utils/generateMarkdown");
 
 // Licenses imported from github api
 let github_licenses;
@@ -45,45 +46,6 @@ function parseChoices() {
   });
 }
 
-// build README text to be written to file
-async function build(
-  title,
-  describe,
-  install,
-  usage,
-  license,
-  contributing,
-  tests,
-  username,
-  email
-) {
-  console.log("build called");
-
-  let license_json = await api.getLicenseDetail(license);
-  let license_description = license_json.description;
-  let license_html_url = license_json.html_url;
-  let license_key = license_json.key.replaceAll("-", "_");
-  let license_label = "license";
-
-  console.log("license_description", license_description);
-  console.log("license_html_url", license_html_url);
-  console.log("license_key", license_key);
-  console.log("license_label", license_label);
-
-  fs.readFile("readme_github_template.md", "utf8", (error, data) => {
-    if (error) {
-      console.error(error);
-    } else {
-      let template = data;
-
-      // convert string to backtick template
-      let buildStr = eval("`" + template + "`");
-
-      writeToFile("GEN_README.md", buildStr);
-    }
-  });
-}
-
 // write README file
 function writeToFile(fileName, data) {
   fs.writeFileSync(fileName, data);
@@ -91,19 +53,6 @@ function writeToFile(fileName, data) {
 
 // initialize app
 async function init() {
-  // temporary answers object for testing
-  // let answers = {
-  //   title: "one",
-  //   describe: "two",
-  //   install: "three",
-  //   usage: "four",
-  //   license: "five",
-  //   contributing: "six",
-  //   tests: "seven",
-  //   username: "eight",
-  //   email: "nine",
-  // };
-
   //fetch licenses from Github
   github_licenses = await api.listLicenses();
 
@@ -112,28 +61,15 @@ async function init() {
   let questions = getQuestions();
 
   // Gather input from user
-  inquirer
-    .prompt(questions)
-    .then((answers) => {
-      console.log("Answers", answers);
+  let answers = await inquirer.prompt(questions);
+  console.log("Answers", answers);
 
-      build(
-        answers.title,
-        answers.describe,
-        answers.install,
-        answers.usage,
-        answers.license,
-        answers.contribute,
-        answers.tests,
-        answers.username,
-        answers.email
-      );
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  let markdown = await utils.generateMarkdown(answers);
 
-  // console.log(Array.isArray(github_licenses));
+  console.log("Markdown", markdown);
+
+  // console.log("buildStr", buildStr);
+  writeToFile("GEN_README.md", markdown);
 }
 
 // Function call to initialize app

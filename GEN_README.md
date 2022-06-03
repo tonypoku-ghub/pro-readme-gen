@@ -1,10 +1,10 @@
-# a
+# 
 
-[![license](https://img.shields.io/badge/license-bsd_3_clause-a2a429.svg)](<$(license_html_url)>)
+[![license](https://img.shields.io/badge/license-agpl_3.0-a2a429.svg)](http://choosealicense.com/licenses/agpl-3.0/)
 
 ## Description
 
-b
+
 
 ## Table of contents
 
@@ -18,28 +18,28 @@ b
 
 ## Installation
 
-c
+
 
 ## Usage
 
-d
+
 
 ## License
 
-A permissive license similar to the <a href="/licenses/bsd-2-clause/">BSD 2-Clause License</a>, but with a 3rd clause that prohibits others from using the name of the project or its contributors to promote derived products without written consent.
+Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
 
-For more details on this license, go to http://choosealicense.com/licenses/bsd-3-clause/
+For more details on this license, go to http://choosealicense.com/licenses/agpl-3.0/
 
 ## Contributing
 
-e
+
 
 # Tests
 
-ff
+
 
 ## Questions
 
-My Github profile: [g](https://github.com/g-ghub)
+My Github profile: [](https://github.com/-ghub)
 
-For additional questions, please contact me at [g](h)
+For additional questions, please contact me at []()

@@ -1,12 +1,12 @@
 # ${title}
 
-[![license](https://img.shields.io/badge/${license_label}-${license_key}-a2a429.svg)](<$(license_html_url)>)
+${license_badge}
 
 ## Description
 
 ${describe}
 
-# Table of contents
+## Table of contents
 
 - [Description](#description)
 - [Installation](#installation)
@@ -34,7 +34,7 @@ For more details on this license, go to ${license_html_url}
 
 ${contributing}
 
-# Tests
+## Tests
 
 ${tests}
 
